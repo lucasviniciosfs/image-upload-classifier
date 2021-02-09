@@ -1,3 +1,20 @@
-<video id="video" width="320" height="240" controls>
-    <source src="../assets/movie.mp4" type="video/mp4">
-</video>
+<mat-toolbar color="secondary">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>smart_toy</mat-icon>
+    </button>   
+    <span>Recognize images with Angular and TensorFlowJS</span>
+</mat-toolbar>
+
+<mat-card style="margin: 10px;">
+    <button style="margin: 3px;" type="button" color="primary" mat-raised-button (click)="fileInput.click()">Choose file</button>
+    <input hidden (change)="onFileSelected()" #fileInput type="file" id="file">
+    <button style="margin: 3px;" type="button" color="warn" mat-raised-button (click)="processImage()">Process</button>
+</mat-card>
+
+<mat-card id="card" style="margin: 10px;">
+</mat-card>
+
+<mat-card style="margin: 10px;" *ngFor="let prediction of this.prediction">
+    <p>It´s possible: {{prediction.className}}</p>
+    <p>% of probability: {{prediction.probability* 100}}</p>
+</mat-card>
